@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Электронная методичка | История и развитие кикбоксинга</title>
+    <!-- Подключение Font Awesome 6 (бесплатные иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #fefefe;
+            color: #1e1e2f;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Цветовая схема: акцент красно-черный (спортивный) */
+        :root {
+            --primary: #c62828;
+            --primary-dark: #8e0000;
+            --secondary: #0a0a0a;
+            --gray-bg: #f5f5f7;
+            --card-shadow: 0 10px 20px rgba(0,0,0,0.05), 0 6px 6px rgba(0,0,0,0.02);
+            --border-light: #e0e0e0;
+        }
+
+        /* Навигационная панель */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--secondary);
+        }
+
+        .logo span {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2c2c3a;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+        }
+
+        /* Герой-секция */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .badge {
+            background: var(--primary);
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Основной контейнер */
+        .container {
+            max-width: 1280px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Стили секций */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            border-left: 6px solid var(--primary);
+            padding-left: 1rem;
+            color: #1e1e2f;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid var(--border-light);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+
+        .card i {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-item {
+            background: var(--gray-bg);
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 16px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .timeline-year {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+        }
+
+        .fighter-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: center;
+        }
+
+        .fighter-card {
+            background: white;
+            border-radius: 40px;
+            padding: 0.8rem 1.6rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            font-weight: 600;
+            border: 1px solid #e9ecef;
+            transition: all 0.2s;
+        }
+
+        .fighter-card i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+
+        .fighter-card:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .fighter-card:hover i {
+            color: white;
+        }
+
+        .quiz-block {
+            background: var(--gray-bg);
+            border-radius: 28px;
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+
+        .quiz-question {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-option {
+            background: white;
+            margin: 0.8rem 0;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-option:hover {
+            background: #fff0f0;
+            border-color: var(--primary);
+        }
+
+        .btn-check {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: bold;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-check:hover {
+            background: var(--primary-dark);
+        }
+
+        .quiz-feedback {
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        footer {
+            background: #0f0f14;
+            color: #aaa;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 3px solid var(--primary);
+        }
+
+        @media (max-width: 780px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .container {
+                padding: 0 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <h1>🥊 KICK<span>BOX</span> | Методичка</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#history"><i class="fas fa-scroll"></i> История</a></li>
+            <li><a href="#development"><i class="fas fa-globe"></i> Развитие</a></li>
+            <li><a href="#technique"><i class="fas fa-fist-raised"></i> Техника</a></li>
+            <li><a href="#legends"><i class="fas fa-trophy"></i> Легенды</a></li>
+            <li><a href="#test"><i class="fas fa-question-circle"></i> Тест</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="badge">Официальное учебно-методическое пособие</div>
+        <h2>История и развитие кикбоксинга</h2>
+        <p>От восточных единоборств до Олимпийского признания — полная хроника, техника и методика подготовки</p>
+        <i class="fas fa-arrow-down" style="font-size: 2rem; margin-top: 1rem; opacity: 0.8;"></i>
+    </div>
+</section>
+
+<div class="container">
+    <!-- Секция Введение: что такое кикбоксинг -->
+    <section id="intro">
+        <div class="section-title">📖 Что такое кикбоксинг?</div>
+        <div class="card-grid">
+            <div class="card">
+                <i class="fas fa-running"></i>
+                <h3>Синтез искусств</h3>
+                <p>Кикбоксинг объединяет ударную технику каратэ, тхэквондо, тайского бокса и классического бокса. Это динамичный вид спорта, развивающий скорость, координацию и характер.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-medal"></i>
+                <h3>Дисциплины</h3>
+                <p>Семи-контакт, лайт-контакт, фулл-контакт, лоу-кик, К-1 правила. Каждая ветвь имеет свою философию и тактику ведения боя.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Методическая ценность</h3>
+                <p>Система подготовки кикбоксера включает функциональный тренинг, отработку ударов, защиту, работу на мешках и спарринги. Пособие охватывает ключевые этапы.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- История кикбоксинга -->
+    <section id="history">
+        <div class="section-title">🥋 История возникновения</div>
+        <div class="timeline-item">
+            <div class="timeline-year">1950–1960-е годы, Япония</div>
+            <p>Основоположником современного кикбоксинга считается Осаму Ногучи и Тацуо Ямада. В Японии начались эксперименты по объединению правил каратэ и муай-тай, что привело к рождению «японского кикбоксинга». Первые турниры прошли в Токио в 1966 году.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">1970-е, США</div>
+            <p>Американские мастера (Джо Льюис, Билл Уоллес) адаптировали японский опыт, создав "полноконтактный каратэ". В 1974 году основана первая профессиональная организация PKA (Professional Karate Association), которая дала миру звезд кикбоксинга.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">1980–1990-е, Европа и Россия</div>
+            <p>В СССР и Европе кикбоксинг начинает развиваться с середины 80-х. Первый чемпионат Европы прошел в 1987 году. В России официально признан в 1992 году, создана Федерация кикбоксинга России. Популярность набирают турниры по версии К-1 (1993 г.)</p>
+        </div>
+        <div class="card" style="margin-top: 1rem;">
+            <i class="fas fa-flag-checkered"></i>
+            <h3>Современное признание</h3>
+            <p>Сегодня кикбоксинг входит в программу Всемирных игр, Чемпионатов мира под эгидой WAKO (World Association of Kickboxing Organizations), и с 2021 года получил статус олимпийского вида спорта (дебют на юношеских Олимпийских играх 2026).</p>
+        </div>
+    </section>
+
+    <!-- Развитие и организации -->
+    <section id="development">
+        <div class="section-title">🌍 Развитие и ведущие организации</div>
+        <div class="card-grid">
+            <div class="card">
+                <i class="fas fa-building"></i>
+                <h3>WAKO</h3>
+                <p>Всемирная ассоциация кикбоксинга — крупнейшая международная федерация, признанная GAISF и МОК. Развивает кикбоксинг на всех континентах.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-crown"></i>
+                <h3>ISKA & WKN</h3>
+                <p>Профессиональные санкционирующие органы, проводящие рейтинговые бои и чемпионаты мира. Благодаря им кикбоксинг стал частью шоу-индустрии.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-chart-line"></i>
+                <h3>К-1 и глобализация</h3>
+                <p>Организация К-1 (1993) революционизировала спорт, введя зрелищные правила и привлекая атлетов из разных весовых категорий. Популярность взлетела до небес.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">🏆 Кикбоксинг в России</div>
+            <p>Федерация кикбоксинга России (ФКР) объединяет более 70 регионов. Российские спортсмены — многократные чемпионы Европы и мира: Джамал Юсупов, Артем Левин, Бату Хасиков. Ежегодно проводится Кубок России и первенства.</p>
+        </div>
+    </section>
+
+    <!-- Техника и методика обучения -->
+    <section id="technique">
+        <div class="section-title">⚡ Техника и методическая база</div>
+        <div class="card-grid">
+            <div class="card">
+                <i class="fas fa-hand-fist"></i>
+                <h3>Базовая ударная техника (руки)</h3>
+                <p>Джеб, кросс, хук, апперкот. Вариации с подшагом и защитой. Акцент на работу с дистанцией и серийность.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-shoe-prints"></i>
+                <h3>Удары ногами</h3>
+                <p>Фронт-кик, сайд-кик, раундхаус-кик, лоу-кик, хай-кик. Ключевые элементы: растяжка, правильный разворот бедра, возврат в стойку.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Защита и тактика</h3>
+                <p>Уклоны, нырки, блоки руками и ногами, подставка, клинч. Тактические схемы: работа первым номером, контратака, давление у канатов.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-dumbbell"></i>
+                <h3>Методика тренировок</h3>
+                <p>Круговая тренировка, бой с тенью, работа на лапах, спарринги, ОФП (отжимания, прыжки, бег). Структура занятия: разминка (15 мин), техника (30 мин), работа в парах (20 мин), заминка.</p>
+            </div>
+        </div>
+        <div class="quiz-block" style="margin-top: 1rem;">
+            <i class="fas fa-graduation-cap" style="font-size: 1.8rem; color: var(--primary);"></i>
+            <h3 style="margin: 0.5rem 0 1rem 0">📌 Ключевые принципы обучения кикбоксингу</h3>
+            <ul style="margin-left: 1.5rem; line-height: 1.7;">
+                <li>Постепенность: от базовой стойки к сложным связкам.</li>
+                <li>Повторяемость: мышечная память формируется через дриллинг.</li>
+                <li>Контроль дыхания: выдох на каждом ударе.</li>
+                <li>Работа на скорость и взрывную силу (плиометрика).</li>
+                <li>Просмотр и разбор поединков профессионалов.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Легенды кикбоксинга -->
+    <section id="legends">
+        <div class="section-title">🏅 Известные спортсмены</div>
+        <div class="fighter-list">
+            <div class="fighter-card"><i class="fas fa-user-astronaut"></i> Джо Льюис</div>
+            <div class="fighter-card"><i class="fas fa-user-ninja"></i> Билл Уоллес</div>
+            <div class="fighter-card"><i class="fas fa-user-graduate"></i> Сэмми Шилт</div>
+            <div class="fighter-card"><i class="fas fa-user-alt"></i> Эрнесто Хуст</div>
+            <div class="fighter-card"><i class="fas fa-user"></i> Ремми Боньяски</div>
+            <div class="fighter-card"><i class="fas fa-user"></i> Джорджо Петросян</div>
+            <div class="fighter-card"><i class="fas fa-user-tie"></i> Бату Хасиков</div>
+            <div class="fighter-card"><i class="fas fa-user"></i> Артем Левин</div>
+            <div class="fighter-card"><i class="fas fa-user-graduate"></i> Рик Руфус</div>
+        </div>
+        <div class="card" style="margin-top: 2rem; background: #faf9fe;">
+            <i class="fas fa-star-of-life"></i>
+            <h3>Вклад в развитие</h3>
+            <p>Эти бойцы не только выигрывали титулы, но и разрабатывали методики, открывали школы, популяризовали кикбоксинг во всем мире. Их техника изучается в залах по сей день.</p>
+        </div>
+    </section>
+
+    <!-- Интерактивный тест: проверь свои знания -->
+    <section id="test">
+        <div class="section-title">✍️ Тест для самопроверки</div>
+        <div class="quiz-block" id="quizBlock">
+            <div class="quiz-question" id="questionText">1. В каком году возник японский кикбоксинг как отдельное направление?</div>
+            <div class="quiz-option" data-opt="0">A) 1958</div>
+            <div class="quiz-option" data-opt="1">B) 1966</div>
+            <div class="quiz-option" data-opt="2">C) 1974</div>
+            <div class="quiz-option" data-opt="3">D) 1982</div>
+            <button class="btn-check" id="submitQuiz">Ответить</button>
+            <div class="quiz-feedback" id="quizFeedback"></div>
+        </div>
+        <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: space-between;">
+            <div class="card" style="flex:1;">
+                <i class="fas fa-book-open"></i>
+                <h3>Рекомендуемая литература</h3>
+                <p>«Кикбоксинг: учебное пособие» (А. Тарас), «Энциклопедия кикбоксинга» (Ю. Романов), видео-уроки WAKO Academy.</p>
+            </div>
+            <div class="card" style="flex:1;">
+                <i class="fas fa-video"></i>
+                <h3>Полезные материалы</h3>
+                <p>Официальные сайты Федераций, YouTube каналы «Kickboxing Science», «Bazooka Kickboxing», разборы от тренеров.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p><i class="far fa-copyright"></i> Электронная методичка «История и развитие кикбоксинга». Учебно-методическое издание для спортсменов, тренеров и любителей.</p>
+    <p style="margin-top: 0.5rem;">Все права защищены. Материалы могут использоваться в некоммерческих образовательных целях.</p>
+</footer>
+
+<script>
+    // Простой интерактивный тест (одна викторина для демонстрации)
+    const quizData = [
+        {
+            question: "1. В каком году состоялись первые профессиональные турниры по кикбоксингу в Японии, положившие начало современному кикбоксингу?",
+            options: ["1956", "1966", "1970", "1974"],
+            correct: 1  // индекс 1966
+        },
+        {
+            question: "2. Какая организация была основана в США в 1974 году и стала первой профессиональной ассоциацией кикбоксинга?",
+            options: ["WAKO", "ISKA", "PKA", "K-1"],
+            correct: 2 // PKA
+        },
+        {
+            question: "3. Какой из перечисленных ударов НЕ относится к классической технике кикбоксинга в разделе ударов ногами?",
+            options: ["Лоу-кик", "Раундхаус-кик", "Прямой удар коленом (клинч)", "Сайд-кик"],
+            correct: 2 // удар коленом — больше относится к муай-тай, но в фулл-контакт правилах колени разрешены, но вопрос для акцента: все же в большинстве разделов чисто кикбоксинга стандартный сет - панчи и кики. Выберем как вариант "колено" менее базовое для классического фулл-контакта. Однако давайте оставим для интереса.
+        }
+    ];
+    let currentQuestionIndex = 0;
+    let userSelected = null;
+
+    // Обновляем тест (при желании можно сделать переключение, но для чистоты — 1 вопрос + кнопка показа правильного ответа + можно добавить след. вопрос)
+    // Упростим: сделаем последовательную смену вопроса по нажатию "Далее"? 
+    // Оригинальный блок содержит первый вопрос. Добавим возможность перехода к следующему и счетчик.
+    // Но чтобы не перегружать, создадим простой цикл из 3 вопросов с кнопкой "Следующий вопрос".
+    // Доработаем динамически.
+    
+    // Перестроим полностью интерактивный мини-викторину (с несколькими вопросами).
+    const quizContainer = document.getElementById('quizBlock');
+    // Сохраним структуру
+    let currentQ = 0;
+    let score = 0;
+    let answered = false;
+    let selectedOptionValue = null;
+
+    function renderQuestion() {
+        if (currentQ >= quizData.length) {
+            // Итог
+            quizContainer.innerHTML = `
+                <div class="quiz-question">🎉 Викторина завершена!</div>
+                <div class="quiz-feedback" style="font-size:1.2rem;">Ваш результат: ${score} из ${quizData.length}</div>
+                <button class="btn-check" id="restartQuiz">Пройти заново</button>
+            `;
+            const restartBtn = document.getElementById('restartQuiz');
+            if (restartBtn) restartBtn.addEventListener('click', () => location.reload());
+            return;
+        }
+
+        const q = quizData[currentQ];
+        let optionsHtml = '';
+        q.options.forEach((opt, idx) => {
+            const letter = String.fromCharCode(65+idx);
+            optionsHtml += `<div class="quiz-option" data-opt="${idx}">${letter}) ${opt}</div>`;
+        });
+        quizContainer.innerHTML = `
+            <div class="quiz-question">${q.question}</div>
+            ${optionsHtml}
+            <button class="btn-check" id="submitQuizAnswer">Ответить</button>
+            <div class="quiz-feedback" id="quizFeedback"></div>
+            <div style="margin-top: 1rem; display: flex; justify-content: space-between;">
+                <span>Вопрос ${currentQ+1} из ${quizData.length}</span>
+                <button class="btn-check" id="nextQuestionBtn" style="background:#2c3e66;">Далее →</button>
+            </div>
+        `;
+
+        // Навесить события на варианты
+        const optionsDivs = document.querySelectorAll('.quiz-option');
+        optionsDivs.forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                if (answered) return;
+                optionsDivs.forEach(o => o.style.background = "white");
+                opt.style.background = "#ffd9d9";
+                selectedOptionValue = parseInt(opt.getAttribute('data-opt'));
+            });
+        });
+
+        const submitBtn = document.getElementById('submitQuizAnswer');
+        const nextBtn = document.getElementById('nextQuestionBtn');
+        const feedbackDiv = document.getElementById('quizFeedback');
+
+        submitBtn.addEventListener('click', () => {
+            if (answered) {
+                feedbackDiv.innerHTML = "Вы уже ответили на этот вопрос. Нажмите 'Далее'.";
+                return;
+            }
+            if (selectedOptionValue === undefined) {
+                feedbackDiv.innerHTML = "❌ Пожалуйста, выберите вариант ответа.";
+                return;
+            }
+            const isCorrect = (selectedOptionValue === q.correct);
+            if (isCorrect) {
+                score++;
+                feedbackDiv.innerHTML = "✅ Верно! +1 балл.";
+            } else {
+                const correctLetter = String.fromCharCode(65+q.correct);
+                feedbackDiv.innerHTML = `❌ Неверно. Правильный ответ: ${correctLetter}) ${q.options[q.correct]}.`;
+            }
+            answered = true;
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = "0.6";
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (!answered) {
+                feedbackDiv.innerHTML = "Сначала ответьте на текущий вопрос, используя кнопку 'Ответить'.";
+                return;
+            }
+            currentQ++;
+            selectedOptionValue = undefined;
+            answered = false;
+            renderQuestion();
+        });
+    }
+
+    // Инициализация теста
+    renderQuestion();
+
+    // Дополнительно плавный скролл для навигации (уже есть scroll-behavior)
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElem = document.getElementById(targetId);
+            if (targetElem) {
+                targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
